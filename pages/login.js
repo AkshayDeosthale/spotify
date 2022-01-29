@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { getProviders, signIn, useSession } from 'next-auth/react'
+import { LOGIN_URL } from '../lib/spotify'
 
 const Login = ({ providers }) => {
   return (
@@ -10,11 +11,12 @@ const Login = ({ providers }) => {
         <div key={provider.name}>
           <button
             className="rounded-lg bg-[#18D860] p-5 text-white"
-            onClick={() =>
-              signIn(provider.id, {
-                callbackUrl: '/',
-              })
-            }
+            onClick={() => {
+              // signIn(provider.id, {
+              //   callbackUrl: '/',
+              // })
+              window.location.href = LOGIN_URL
+            }}
           >
             login with {provider.name}
           </button>
@@ -41,4 +43,4 @@ export async function getServerSideProps() {
   }
 }
 
-//https://www.youtube.com/watch?v=3xrko3GpYoU&t=13s : 1:29
+//https://www.youtube.com/watch?v=3xrko3GpYoU&t=13s : 1:29:00
